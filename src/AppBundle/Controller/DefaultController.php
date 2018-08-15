@@ -11,6 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends Controller
 {
+    const PRODUCT_PER_PAGE = 6;
+
     /**
      * @Route("/", name="homepage")
      * @param Request $request
@@ -26,7 +28,7 @@ class DefaultController extends Controller
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            6
+            self::PRODUCT_PER_PAGE
         );
 
         return $this->render('index.html.twig', [
@@ -37,6 +39,7 @@ class DefaultController extends Controller
     /**
      * @Route("/{category}", name="category")
      * @param $category
+     * @return Response
      */
     public function categoryPageAction($category)
     {
