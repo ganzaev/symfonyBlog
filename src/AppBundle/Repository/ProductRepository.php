@@ -24,6 +24,7 @@ class ProductRepository extends EntityRepository
         $statement = $connection->prepare($dql);
         $statement->bindValue('name', $name);
         $statement->execute();
+
         return $statement->fetchAll();
     }
 
@@ -33,6 +34,7 @@ class ProductRepository extends EntityRepository
     public function prepareQueryForPagination(): Query
     {
         $dql = "SELECT p FROM AppBundle:Product p";
+
         return $this->getEntityManager()->createQuery($dql);
     }
 }
