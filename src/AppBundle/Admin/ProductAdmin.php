@@ -24,6 +24,9 @@ class ProductAdmin extends AbstractAdmin
             ]);;
     }
 
+    /**
+     * @param DatagridMapper $datagridMapper
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
@@ -33,6 +36,9 @@ class ProductAdmin extends AbstractAdmin
             ->add('category');;
     }
 
+    /**
+     * @param ListMapper $listMapper
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper

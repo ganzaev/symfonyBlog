@@ -18,7 +18,7 @@ class DefaultController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request): Response
     {
         $this->getDoctrine()->getRepository(Product::class);
         $em = $this->get('doctrine.orm.entity_manager');
@@ -41,7 +41,7 @@ class DefaultController extends Controller
      * @param $category
      * @return Response
      */
-    public function categoryPageAction($category)
+    public function categoryPageAction($category): Response
     {
         $currentProducts = $this->getDoctrine()
             ->getRepository(Product::class)

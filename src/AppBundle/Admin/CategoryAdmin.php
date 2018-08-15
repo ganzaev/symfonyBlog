@@ -21,6 +21,10 @@ class CategoryAdmin extends AbstractAdmin
             ->add('name');
     }
 
+    /**
+     * @param DatagridMapper $datagridMapper
+     *
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
@@ -28,6 +32,9 @@ class CategoryAdmin extends AbstractAdmin
             ->add('name');
     }
 
+    /**
+     * @param ListMapper $listMapper
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
