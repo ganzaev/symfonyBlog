@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Admin;
+
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -18,11 +19,9 @@ class ProductAdmin extends AbstractAdmin
             ->add('id', null, ['required' => false])
             ->add('name')
             ->add('description')
-            ->add('category', 'entity',[
+            ->add('category', 'entity', [
                 'class' => 'AppBundle\Entity\Category',
-            ]);
-
-        ;
+            ]);;
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -31,8 +30,7 @@ class ProductAdmin extends AbstractAdmin
             ->add('id')
             ->add('name')
             ->add('description')
-            ->add('category');
-        ;
+            ->add('category');;
     }
 
     protected function configureListFields(ListMapper $listMapper)
@@ -48,8 +46,7 @@ class ProductAdmin extends AbstractAdmin
                     'edit' => array(),
                     'delete' => array(),
                 )
-            ));
-        ;
+            ));;
     }
 
     /**
@@ -61,7 +58,6 @@ class ProductAdmin extends AbstractAdmin
             ->add('id')
             ->add('name')
             ->add('description')
-            ->add('category');
-        ;
+            ->add('category');;
     }
 }

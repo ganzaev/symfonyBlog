@@ -34,12 +34,12 @@ class CategoryAdmin extends AbstractAdmin
             ->add('id')
             ->add('name')
             ->add('_action', null, array(
-        'actions' => array(
-            'show' => array(),
-            'edit' => array(),
-            'delete' => array(),
-        )
-    ));
+                'actions' => array(
+                    'show' => array(),
+                    'edit' => array(),
+                    'delete' => array(),
+                )
+            ));
     }
 
     /**

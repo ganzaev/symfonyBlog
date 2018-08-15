@@ -43,15 +43,15 @@ class DefaultController extends Controller
      */
     public function categoryPageAction($category)
     {
-         $currentProducts = $this->getDoctrine()
+        $currentProducts = $this->getDoctrine()
             ->getRepository(Product::class)
             ->findProductsByCategoryName($category);
-         $categories = $this->getDoctrine()
-             ->getRepository(Category::class)
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
             ->findAll();
         return $this->render('category.html.twig', [
             'products' => $currentProducts,
             'categories' => $categories
-            ]);
+        ]);
     }
 }

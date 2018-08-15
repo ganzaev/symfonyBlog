@@ -3,7 +3,6 @@
 namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query\Parameter;
 
 class ProductRepository extends EntityRepository
 {
@@ -15,6 +14,7 @@ class ProductRepository extends EntityRepository
      */
     public function findProductsByCategoryName($name)
     {
+        // probably not the best solution but works fast
         $connection = $this->getEntityManager()->getConnection();
         $dql = 'SELECT p.* FROM products as p
             INNER JOIN categories as c
