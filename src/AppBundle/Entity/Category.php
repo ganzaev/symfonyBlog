@@ -39,9 +39,9 @@ class Category
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId():? int
     {
         return $this->id;
     }
@@ -57,7 +57,7 @@ class Category
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName():? string
     {
         return $this->name;
     }
@@ -75,12 +75,12 @@ class Category
     /**
      * @return Collection|Product[]
      */
-    public function getProducts(): Collection
+    public function getProducts():? Collection
     {
         return $this->products;
     }
 
-    public function __toString(): string
+    public function __toString():? string
     {
         return (string)($this->name);
     }

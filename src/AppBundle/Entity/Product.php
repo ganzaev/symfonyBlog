@@ -29,7 +29,7 @@ class Product
     /**
      * @return Category|null
      */
-    public function getCategory(): Category
+    public function getCategory():? Category
     {
         return $this->category;
     }
@@ -68,7 +68,7 @@ class Product
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId():? int
     {
         return $this->id;
     }
@@ -84,7 +84,7 @@ class Product
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName():? string
     {
         return $this->name;
     }
@@ -100,7 +100,7 @@ class Product
     /**
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription():? string
     {
         return $this->description;
     }

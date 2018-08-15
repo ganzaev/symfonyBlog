@@ -2,19 +2,20 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Product;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 
 class ProductRepository extends EntityRepository
 {
 
     /**
      * @param $name
-     * @return array
      * @throws \Doctrine\DBAL\DBALException
+     * @return Product[]
      */
     public function findProductsByCategoryName($name)
     {
-        // probably not the best solution but works fast
         $connection = $this->getEntityManager()->getConnection();
         $dql = 'SELECT p.* FROM products as p
             INNER JOIN categories as c
@@ -24,5 +25,14 @@ class ProductRepository extends EntityRepository
         $statement->bindValue('name', $name);
         $statement->execute();
         return $statement->fetchAll();
+    }
+
+    /**
+     * @return Query
+     */
+    public function prepareQueryForPagination(): Query
+    {
+        $dql = "SELECT p FROM AppBundle:Product p";
+        return $this->getEntityManager()->createQuery($dql);
     }
 }

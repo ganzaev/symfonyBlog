@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends Controller
 {
-    const PRODUCT_PER_PAGE = 6;
+    private const PRODUCT_PER_PAGE = 6;
 
     /**
      * @Route("/", name="homepage")
@@ -20,10 +20,9 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request): Response
     {
-        $this->getDoctrine()->getRepository(Product::class);
-        $em = $this->get('doctrine.orm.entity_manager');
-        $dql = "SELECT p FROM AppBundle:Product p";
-        $query = $em->createQuery($dql);
+        $query = $this->getDoctrine()
+            ->getRepository(Product::class)
+            ->prepareQueryForPagination();
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $query,
@@ -49,6 +48,7 @@ class DefaultController extends Controller
         $categories = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findAll();
+
         return $this->render('category.html.twig', [
             'products' => $currentProducts,
             'categories' => $categories
