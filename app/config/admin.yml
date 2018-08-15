@@ -1,0 +1,20 @@
+services:
+    app.admin.product:
+        class: AppBundle\Admin\ProductAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Product" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Product
+            - ~
+        public: true
+
+    app.admin.category:
+        class: AppBundle\Admin\CategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Category" }
+        arguments:
+            - ~
+            - AppBundle\Entity\Category
+            - ~
+        public: true

@@ -2,20 +2,53 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Category;
+use AppBundle\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
+     * @param Request $request
+     * @return Response
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        $this->getDoctrine()->getRepository(Product::class);
+        $em = $this->get('doctrine.orm.entity_manager');
+        $dql = "SELECT p FROM AppBundle:Product p";
+        $query = $em->createQuery($dql);
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            6
+        );
+
+        return $this->render('index.html.twig', [
+            'pagination' => $pagination
         ]);
+    }
+
+    /**
+     * @Route("/{category}", name="category")
+     * @param $category
+     */
+    public function categoryPageAction($category)
+    {
+         $currentProducts = $this->getDoctrine()
+            ->getRepository(Product::class)
+            ->findProductsByCategoryName($category);
+         $categories = $this->getDoctrine()
+             ->getRepository(Category::class)
+            ->findAll();
+        return $this->render('category.html.twig', [
+            'products' => $currentProducts,
+            'categories' => $categories
+            ]);
     }
 }
